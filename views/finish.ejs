@@ -1,0 +1,50 @@
+<% layout('layout')%>
+    <div class="container-sm d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                <div class="card shadow">
+                    <img src="https://images.unsplash.com/photo-1495013034289-3664878e32f8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+                    alt="" class="img-fluid"/>
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">Mileage Log</h5>
+                            <form action="/finish/<%=timesheets.id%>?_method=PUT" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label" for="from">From</label>
+                                    <select class="form-select" aria-label="Default select example" name="from" disabled>
+                                        <option><%=timesheets.from%></option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="to">To</label>
+                                    <select class="form-select" aria-label="Default select example" name="to">
+                                        <% for (let location of locations) {%>
+                                            <option value="<%=location.location%>"><%=location.location%></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="project">Project</label>
+                                    <select class="form-select" aria-label="Default select example" name="project">
+                                        <% for (let project of projects) {%>
+                                            <option value="<%=project.project%>"><%=project.project%></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="start">Start</label>
+                                    <input class="form-control" type="number" value="<%= timesheets.start %>" disabled>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="start">Finish</label>
+                                    <input class="form-control" type="number" name="finish" required>
+                                </div>
+                                <div class="d-grid gap-2 mb-3">
+                                    <button class="btn btn-success">Submit</button>
+                                </div>
+                                
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>            
